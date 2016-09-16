@@ -185,7 +185,8 @@ class BaseClass(object):
 
     def _initiate(self):
         if not self._load_cookies():
-            self.session.get('http://www.baidu.com')
+            self.user['token'] = ''
+            self._login()
             self.user['token'] = self._get_token()
             self._login()
         else:
