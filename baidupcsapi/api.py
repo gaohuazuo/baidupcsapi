@@ -106,6 +106,7 @@ def check_login(func):
                     path = '.{0}.cookies'.format(args[0].username)
                     if os.path.exists(path):
                         os.remove(path)
+                    args[0].session.cookies.clear()
                     args[0]._initiate()
             except:
                 pass
