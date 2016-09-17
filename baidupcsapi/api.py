@@ -196,8 +196,7 @@ class BaseClass(object):
     def _save_cookies(self):
         cookies_file = '.{0}.cookies'.format(self.username)
         with open(cookies_file, 'w') as f:
-            pickle.dump(
-                requests.utils.dict_from_cookiejar(self.session.cookies), f)
+            pickle.dump(self.session.cookies, f)
 
     def _load_cookies(self):
         cookies_file = '.{0}.cookies'.format(self.username)
@@ -206,8 +205,7 @@ class BaseClass(object):
             logging.debug('%s cookies file has already existed.' %
                           self.username)
             with open(cookies_file) as cookies_file:
-                cookies = requests.utils.cookiejar_from_dict(
-                    pickle.load(cookies_file))
+                cookies = pickle.load(cookies_file)
                 logging.debug(str(cookies))
                 self.session.cookies = cookies
                 self.user['BDUSS'] = self.session.cookies['BDUSS']
